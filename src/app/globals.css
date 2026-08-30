@@ -3,17 +3,33 @@
 @tailwind utilities;
 
 :root {
-  --background: #fafafa;
-  --foreground: #171717;
+  --foreground: #3f342c;
+  --background: #fdf7ee;
+  /* 따뜻한 톤: 크림색 → 연한 살구색 */
+  --grad-from: #fdf7ee;
+  --grad-via: #fceede;
+  --grad-to: #f8dcc2;
 }
 
 .dark {
-  --background: #0a0a0a;
-  --foreground: #ededed;
+  --foreground: #efe5da;
+  --background: #1b1613;
+  /* 어두워도 온기를 유지하는 웜 차콜 */
+  --grad-from: #1b1613;
+  --grad-via: #211a15;
+  --grad-to: #2c211a;
 }
 
 body {
   color: var(--foreground);
-  background: var(--background);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  background: linear-gradient(
+    165deg,
+    var(--grad-from) 0%,
+    var(--grad-via) 48%,
+    var(--grad-to) 100%
+  );
+  background-attachment: fixed;
+  min-height: 100dvh;
+  font-family: Pretendard, var(--font-geist-sans), system-ui, -apple-system,
+    "Apple SD Gothic Neo", "Malgun Gothic", "Segoe UI", sans-serif;
 }

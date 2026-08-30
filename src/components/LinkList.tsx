@@ -9,7 +9,7 @@ export default function LinkList({
   counts: Record<string, number>;
 }) {
   return (
-    <div className="flex w-full flex-col gap-3">
+    <div className="flex w-full flex-col gap-3.5">
       {links.map((link) => (
         <LinkCard key={link.id} link={link} initialCount={counts[link.id]} />
       ))}

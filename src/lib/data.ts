@@ -14,20 +14,21 @@ export interface LinkItem {
   icon: string;
 }
 
-// ⚠️ 아래는 전부 보여주기용 더미 값입니다. 실제 내용으로 교체하세요.
-
-/** 네트워크 없이도 렌더되는 자체 포함 더미 아바타 (회색 실루엣) */
-const DUMMY_AVATAR =
-  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Crect width='100%25' height='100%25' fill='%23e5e7eb'/%3E%3Ccircle cx='80' cy='60' r='28' fill='%239ca3af'/%3E%3Cellipse cx='80' cy='140' rx='50' ry='34' fill='%239ca3af'/%3E%3C/svg%3E";
+// ⚠️ 링크 목록은 보여주기용 더미 값입니다. 실제 내용으로 교체하세요.
 
 export const profile: ProfileData = {
-  name: "김클로",
-  bio: "세계 최강 바이브코더",
-  avatarUrl: DUMMY_AVATAR,
+  name: "김개발",
+  bio: "풀스택 개발자 | 요즘에는 AI 개발에 관심이 많아요",
+  avatarUrl: "https://placehold.co/150x150/orange/white",
 };
 
 export const links: LinkItem[] = [
-  { id: "github", label: "GitHub", url: "https://github.com", icon: "🐙" },
-  { id: "linkedin", label: "LinkedIn", url: "https://linkedin.com", icon: "💼" },
-  { id: "blog", label: "Blog", url: "https://example.com", icon: "✍️" },
+  { id: "github", label: "깃허브", url: "https://github.com/firezenh", icon: "🐙" },
+  {
+    id: "blog",
+    label: "블로그",
+    url: "https://m.blog.naver.com/PostList.naver?blogId=ranto28&tab=1",
+    icon: "✍️",
+  },
+  { id: "email", label: "이메일", url: "mailto:test@test.com", icon: "✉️" },
 ];
