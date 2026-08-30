@@ -1,19 +1,26 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { LinkItem } from "@/lib/data";
 
 export default function LinkCard({
   link,
-  initialCount,
+  count,
 }: {
   link: LinkItem;
-  initialCount?: number;
+  /** LinkList가 서버에서 받아온 현재 클릭 수. 받기 전에는 0. */
+  count: number;
 }) {
-  const [count, setCount] = useState<number | undefined>(initialCount);
+  const [displayCount, setDisplayCount] = useState(count);
+
+  // LinkList의 fetch가 끝나 실제 값이 내려오면 화면을 갱신합니다.
+  useEffect(() => {
+    setDisplayCount(count);
+  }, [count]);
 
   // 새 탭으로 열리므로 현재 페이지는 유지된다. 클릭 집계는 fire-and-forget.
   function handleClick() {
+    setDisplayCount((c) => c + 1); // 낙관적 갱신
     fetch("/api/click", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -22,7 +29,7 @@ export default function LinkCard({
     })
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
-        if (data && typeof data.count === "number") setCount(data.count);
+        if (data && typeof data.count === "number") setDisplayCount(data.count);
       })
       .catch(() => {});
   }
@@ -39,8 +46,8 @@ export default function LinkCard({
         {link.icon}
       </span>
       <span className="flex-1 text-center font-medium">{link.label}</span>
-      <span className="min-w-[2ch] text-right text-xs text-neutral-500/70 dark:text-neutral-400/60">
-        {typeof count === "number" ? count.toLocaleString() : ""}
+      <span className="min-w-[3ch] whitespace-nowrap text-right text-xs text-neutral-500/70 dark:text-neutral-400/60">
+        {displayCount.toLocaleString()}회
       </span>
     </a>
   );
